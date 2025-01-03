@@ -60,4 +60,29 @@ header {
     margin-top: 0;
 }
 
+.skills h3 {
+    max-width: 600px;
+    margin-top: 30px;
+    margin-left: 20px;
+    color: #000;
+}
 
+.skill-list {
+    margin-top: 3px;
+    margin-left: 20px;
+    margin-top: 0;
+   
+}
+
+.contact h3 {
+    max-width: 600px;
+    margin-top: 30px;
+    margin-left: 20px;
+    color: #000;
+}
+
+.contact p {
+    margin-top: 3px;
+    margin-left: 20px;
+    margin-top: 0;
+}
