@@ -1,21 +1,24 @@
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #f8f9fa;
     color: #333;
+    line-height: 1.6;
 }
 
 nav {
     margin-top: 0;
     background-color: #4caf50;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .nav-menu {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     margin: 0;
     padding: 0;
 }
@@ -24,65 +27,359 @@ nav {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    font-size: 20px;
-    padding: auto;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    background-color: rgba(255,255,255,0.2);
 }
 
 /* 헤더 */
 header {
-    background-color: #80ce83;
+    background: linear-gradient(135deg, #4caf50, #80ce83);
     color: white;
-    padding: 20px ;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .profile h3 {
-    font-size: 22px;
-    margin: 10px 0 5px;
+    font-size: 28px;
+    margin: 0;
+    font-weight: 600;
 }
 
 .profile p {
-    font-size: 16px;
+    font-size: 18px;
     margin: 0;
-    
+    opacity: 0.9;
+}
+
+/* 메인 컨테이너 */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 공통 섹션 스타일 */
+section {
+    background: white;
+    margin: 30px 0;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+section h3 {
+    color: #2e7d32;
+    font-size: 24px;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #4caf50;
+}
+
+/* Introduction 섹션 */
+.introduction {
+    background: white;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 900px;
 }
 
 .introduction h3 {
-    max-width: 600px;
-    margin-top: 30px;
-    margin-left: 20px;
-    color: #000;
-    
+    color: #2e7d32;
+    font-size: 24px;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #4caf50;
 }
 
 .introduction p {
-    margin-top: 3px;
-    margin-left: 20px;
-    margin-top: 0;
+    font-size: 16px;
+    margin: 0;
+    line-height: 1.6;
 }
 
+/* Skills 섹션 */
 .skills h3 {
-    max-width: 600px;
-    margin-top: 30px;
-    margin-left: 20px;
-    color: #000;
+    color: #2e7d32;
+    font-size: 24px;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #4caf50;
 }
 
 .skill-list {
-    margin-top: 3px;
-    margin-left: 20px;
-    margin-top: 0;
-   
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
 }
 
-.contact h3 {
-    max-width: 600px;
-    margin-top: 30px;
-    margin-left: 20px;
-    color: #000;
+.skill-item {
+    background: #e8f5e8;
+    color: #2e7d32;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    border: 2px solid #4caf50;
+    transition: all 0.3s ease;
 }
 
+.skill-item:hover {
+    background: #4caf50;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Education 섹션 */
+.education-item {
+    margin-bottom: 20px;
+}
+
+.education-item h4 {
+    color: #2e7d32;
+    font-size: 20px;
+    margin: 0 0 10px 0;
+}
+
+.education-item .degree {
+    font-weight: 600;
+    color: #555;
+    margin: 5px 0;
+}
+
+.education-item .period {
+    color: #666;
+    font-style: italic;
+    margin: 5px 0;
+}
+
+.education-item .gpa {
+    color: #4caf50;
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.education-item h5 {
+    color: #333;
+    margin: 15px 0 10px 0;
+}
+
+.education-item ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.education-item li {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Experience 섹션 */
+.experience-item {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.experience-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.experience-item h4 {
+    color: #2e7d32;
+    font-size: 20px;
+    margin: 0 0 5px 0;
+}
+
+.experience-item .company {
+    font-weight: 600;
+    color: #555;
+    margin: 5px 0;
+}
+
+.experience-item .period {
+    color: #666;
+    font-style: italic;
+    margin: 5px 0 15px 0;
+}
+
+.experience-item ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.experience-item li {
+    margin: 8px 0;
+    color: #555;
+}
+
+/* Awards 섹션 */
+.awards-list {
+    display: grid;
+    gap: 20px;
+}
+
+.award-item {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #4caf50;
+}
+
+.award-item h4 {
+    color: #2e7d32;
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+.award-item p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Blog 섹션 */
+.blog-list {
+    display: grid;
+    gap: 20px;
+}
+
+.blog-item {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #4caf50;
+}
+
+.blog-item h4 {
+    margin: 0 0 10px 0;
+}
+
+.blog-item h4 a {
+    color: #2e7d32;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.blog-item h4 a:hover {
+    color: #4caf50;
+    text-decoration: underline;
+}
+
+.blog-item .date {
+    color: #666;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.blog-item p:last-child {
+    color: #555;
+    margin: 10px 0 0 0;
+}
+
+/* Resume 섹션 */
+.resume p {
+    margin: 0 0 20px 0;
+    color: #555;
+}
+
+.resume-download {
+    display: inline-block;
+    background: #4caf50;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.resume-download:hover {
+    background: #2e7d32;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Contact 섹션 */
 .contact p {
-    margin-top: 3px;
-    margin-left: 20px;
-    margin-top: 0;
+    margin: 10px 0;
+    color: #555;
+}
+
+.contact a {
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact a:hover {
+    color: #2e7d32;
+    text-decoration: underline;
+}
+
+/* 푸터 */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    section {
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    .skill-list {
+        justify-content: center;
+    }
+    
+    .nav-menu {
+        gap: 15px;
+    }
+    
+    .nav-menu a {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+    
+    .profile h3 {
+        font-size: 24px;
+    }
+    
+    .profile p {
+        font-size: 16px;
+    }
 }

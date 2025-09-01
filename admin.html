@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Add Project</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <!-- 네비게이션 -->
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="admin.html">Admin</a></li>
+    </ul>
+  </nav>
+
+  <!-- 로그인 -->
+  <div id="loginArea">
+    <h2>Admin Login</h2>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <button id="loginBtn">Login</button>
+    <p id="errorMsg" style="color:red; display:none;">Wrong password. Try again.</p>
+  </div>
+
+  <!-- 관리자 컨텐츠 -->
+  <div id="adminContent" style="display:none;">
+    <h1>프로젝트 추가</h1>
+    <form id="projectForm">
+      <label>날짜:</label>
+      <input type="date" id="projectDate" required>
+
+      <label>제목:</label>
+      <input type="text" id="projectTitle" required>
+
+      <label>설명:</label>
+      <textarea id="projectDesc" required></textarea>
+
+      <label>기술스택 (쉼표로 구분):</label>
+      <input type="text" id="projectTech">
+
+      <label>Live Demo 링크:</label>
+      <input type="url" id="projectDemo">
+
+      <label>GitHub 링크:</label>
+      <input type="url" id="projectGithub">
+
+      <button type="submit">추가하기</button>
+    </form>
+
+    <button id="exportBtn">JSON으로 내보내기</button>
+    <pre id="exportArea"></pre>
+  </div>
+
+  <script>
+    // ✅ 비밀번호 (원하는 걸로 바꾸세요)
+    const ADMIN_PASSWORD = "1234"; 
+
+    document.getElementById("loginBtn").addEventListener("click", function() {
+      const input = document.getElementById("passwordInput").value;
+      if (input === ADMIN_PASSWORD) {
+        document.getElementById("loginArea").style.display = "none";
+        document.getElementById("adminContent").style.display = "block";
+      } else {
+        document.getElementById("errorMsg").style.display = "block";
+      }
+    });
+
+    // ✅ LocalStorage 활용
+    let projects = JSON.parse(localStorage.getItem("projects")) || [];
+
+    document.getElementById("projectForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const project = {
+        date: document.getElementById("projectDate").value,
+        title: document.getElementById("projectTitle").value,
+        desc: document.getElementById("projectDesc").value,
+        tech: document.getElementById("projectTech").value.split(",").map(t => t.trim()),
+        links: {
+          demo: document.getElementById("projectDemo").value,
+          github: document.getElementById("projectGithub").value
+        }
+      };
+
+      projects.push(project);
+      localStorage.setItem("projects", JSON.stringify(projects));
+
+      alert("프로젝트가 저장되었습니다!");
+      e.target.reset();
+    });
+
+    // ✅ JSON 내보내기
+    document.getElementById("exportBtn").addEventListener("click", function() {
+      const jsonData = JSON.stringify(projects, null, 2);
+      document.getElementById("exportArea").textContent = jsonData;
+    });
+  </script>
+</body>
+</html>
+

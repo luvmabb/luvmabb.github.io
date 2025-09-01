@@ -1,34 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <link rel="stylesheet" href="style1.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Portfolio</title>
+  <link rel="stylesheet" href="style1.css">
 </head>
 <body>
-    <!--목차-->
-    <nav>
-        <ul class="nav-menu">
-            <li><a href="index.html">Overview</li>
-            <li><a href="projects.html">Projects</a></li>
-            
-        </ul>
-    </nav>
-    <section class="projects-memo">
-        <h2>projets</h2>
-        <form id="projetsmemo">
-            <!--제목목-->
-            <label for="title">title:</label>
-            <input type="text" id="title" placeholder="enter the title" required>
-            <!--텍스트-->
-            <label for="content">content:</label>
-            <textarea id="content" placeholder="enter the content"></textarea>
-            <!-- 이미지 첨부<input type="file"> -->
-            <label for="file">file upload</label>
-            <input type="file" id="file-upload" accept="image/*" >
-        </form>
-    
-    </section>
+  <!-- 목차 -->
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="admin.html">Admin</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <header class="projects-header">
+      <h1>My Projects</h1>
+      <p>A collection of my work and projects, organized by date</p>
+    </header>
+
+    <!-- 여기에 JS가 자동으로 프로젝트들을 넣어줌 -->
+    <section id="projectsContainer" class="projects-timeline"></section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Luvmabb</p>
+  </footer>
+
+  <script>
+    // projects.json 불러오기
+    fetch("projects.json")
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById("projectsContainer");
+
+        // 연도별로 그룹핑하기
+        const projectsByYear = {};
+        data.forEach(project => {
+          const year = project.date.split("-")[0]; // YYYY-MM-DD에서 연도만 추출
+          if (!projectsByYear[year]) {
+            projectsByYear[year] = [];
+          }
+          projectsByYear[year].push(project);
+        });
+
+        // 연도별로 출력
+        Object.keys(projectsByYear).sort((a, b) => b - a).forEach(year => {
+          const yearSection = document.createElement("div");
+          yearSection.classList.add("year-section");
+
+          yearSection.innerHTML = `<h2 class="year-title">${year}</h2>`;
+
+          projectsByYear[year]
+            .sort((a, b) => new Date(b.date) - new Date(a.date)) // 최신순 정렬
+            .forEach(project => {
+              const item = document.createElement("div");
+              item.classList.add("project-item");
+              item.innerHTML = `
+                <div class="project-date">${new Date(project.date).toLocaleDateString()}</div>
+                <div class="project-content">
+                  <h3>${project.title}</h3>
+                  <p class="project-description">${project.desc}</p>
+                  <div class="project-tech">
+                    ${project.tech.map(t => `<span class="tech-tag">${t}</span>`).join(" ")}
+                  </div>
+                  <div class="project-links">
+                    <a href="${project.links.demo}" class="project-link" target="_blank">Live Demo</a>
+                    <a href="${project.links.github}" class="project-link" target="_blank">GitHub</a>
+                  </div>
+                </div>
+              `;
+              yearSection.appendChild(item);
+            });
+
+          container.appendChild(yearSection);
+        });
+      })
+      .catch(error => {
+        console.error("프로젝트 데이터를 불러올 수 없습니다:", error);
+      });
+  </script>
 </body>
 </html>
